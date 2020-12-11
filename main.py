@@ -13,7 +13,7 @@ def kule(masa1, predkosc1, promien1, masa2, predkosc2, promien2):
     return kula1, kula2
 
 
-def zderzenia(kula1, kula2):
+def sprezyste(kula1, kula2):
     print('Wartosci kul przed zderzeniem [masa predkosc promien]:', kula1, kula2)
     nowapredkosc1 = (kula1[1] * (kula1[0] - kula2[0]) + 2 * kula2[0] * kula2[1]) / (kula1[0] + kula2[0])
     nowapredkosc2 = (kula2[1] * (kula2[0] - kula1[0]) + 2 * kula1[0] * kula1[1]) / (kula1[0] + kula2[0])
@@ -21,6 +21,16 @@ def zderzenia(kula1, kula2):
     kula2[1] = nowapredkosc2
     print('Wartosci kul po zderzeniu [masa predkosc promien]:', kula1, kula2)
     return kula1, kula2
+
+
+def nie_sprezyste(kula1, kula2):
+    print('Wartosci kul przed zderzeniem [masa predkosc promien]:', kula1, kula2)
+    nowapredkosc1 = (kula1[1] * kula1[0] + kula2[0] * kula2[1]) / (kula1[0] + kula2[0])
+    kula1[1] = nowapredkosc1
+    kula1[0] = kula1[0] + kula2[0]
+    kula1[2] = kula1[2] + kula2[2]
+    print('Wartosci kul po zderzeniu [masa predkosc promien]:', kula1)
+    return kula1
 
 
 def wpisz_dane():
@@ -70,7 +80,7 @@ ax[0].set_xticks(x)
 ax[0].set_xticklabels(etykiety)
 ax[0].legend()
 
-zderzenia(kula1, kula2)
+sprezyste(kula1, kula2)
 
 ax[1].bar(x - szerokosc/2, kula1, szerokosc, label='Kula1')
 ax[1].bar(x + szerokosc/2, kula2, szerokosc, label='Kula2')
